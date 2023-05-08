@@ -8,13 +8,10 @@ function callback(err) {
     console.log('Complete copying.');
 }
 
-async function copyDir() {
+function copyDir() {
 
-    fs.rmdir(join(__dirname, 'files-copy'), () => {
+    fs.rmdir(join(__dirname, 'files-copy'), async () => {
         console.log('Complete removing');
-    })
-
-    setTimeout(async () => {
 
         const projectFolder = join(__dirname, 'files-copy');
         const dirCreation = await mkdir(projectFolder, { recursive: true });
@@ -32,8 +29,8 @@ async function copyDir() {
                 console.error(err);
             }
         })
-    }, 0);
 
+    })
 }
 
-copyDir().catch(console.error);
+copyDir();

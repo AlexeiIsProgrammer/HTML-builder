@@ -65,25 +65,19 @@ readableHTMLStream.on('end', () => {
     })
 })
 
-async function createFolder() {
-    fs.rmdir(path.join(__dirname, 'project-dist'), () => {
+function createFolder() {
+    fs.rmdir(path.join(__dirname, 'project-dist'), async () => {
         console.log('Complete project-dist\'s reloading!');
-    })
-
-    setTimeout(async () => {
 
         const projectFolder = path.join(__dirname, 'project-dist');
         const dirCreation = await mkdir(projectFolder, { recursive: true });
-    }, 0);
-}
-
-async function copyAssets(pathStructor) {
-
-    fs.rmdir(path.join(__dirname, 'project-dist', pathStructor), () => {
     })
 
-    setTimeout(async () => {
+}
 
+function copyAssets(pathStructor) {
+
+    fs.rmdir(path.join(__dirname, 'project-dist', pathStructor), async () => {
         const projectFolder = path.join(__dirname, 'project-dist', pathStructor);
         const dirCreation = await mkdir(projectFolder, { recursive: true });
 
@@ -102,6 +96,5 @@ async function copyAssets(pathStructor) {
                 console.error(err);
             }
         })
-    }, 0);
-
+    })
 }
