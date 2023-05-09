@@ -8,7 +8,7 @@ fs.readdir(path.join(__dirname, 'secret-folder'), { withFileTypes: true }, (err,
     try {
         // path.extname(file.name)
         for (const file of files) {
-            if (file.isFile) {
+            if (file.isFile()) {
                 fs.stat(path.join(__dirname, 'secret-folder', file.name), "utf8",
                     function (error, data) {
                         if (error) throw error;
