@@ -1,15 +1,14 @@
 const { mkdir } = require('node:fs/promises');
 const path = require('path');
-const { copyFile } = require('node:fs');
+const { copyFile, rm } = require('node:fs');
 const fs = require('fs');
-const rimraf = require('rimraf');
 
 function callback(err) {
     if (err) throw err;
 }
 
 function copyDir() {
-    rimraf(path.join(__dirname, 'files-copy'), async () => {
+    rm(path.join(__dirname, 'files-copy'), { recursive: true, force: true }, async () => {
         console.log('Complete removing');
 
         const projectFolder = path.join(__dirname, 'files-copy');

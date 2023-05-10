@@ -66,7 +66,7 @@ readableHTMLStream.on('end', () => {
 })
 
 function createFolder() {
-    fs.rmdir(path.join(__dirname, 'project-dist'), async () => {
+    fs.rm(path.join(__dirname, 'project-dist'), { recursive: true, force: true }, async () => {
         console.log('Complete project-dist\'s reloading!');
 
         const projectFolder = path.join(__dirname, 'project-dist');
@@ -77,7 +77,7 @@ function createFolder() {
 
 function copyAssets(pathStructor) {
 
-    fs.rmdir(path.join(__dirname, 'project-dist', pathStructor), async () => {
+    fs.rm(path.join(__dirname, 'project-dist', pathStructor), { recursive: true, force: true }, async () => {
         const projectFolder = path.join(__dirname, 'project-dist', pathStructor);
         const dirCreation = await mkdir(projectFolder, { recursive: true });
 
@@ -87,7 +87,7 @@ function copyAssets(pathStructor) {
             try {
                 for (const file of files) {
                     if (file.name.indexOf('.') === -1) {
-                        copyAssets(pathStructor + '\\' + file.name)
+                        copyAssets(path.join(pathStructor, file.name))
                     } else {
                         copyFile(path.join(__dirname, pathStructor, file.name), path.join(__dirname, 'project-dist', pathStructor, file.name), () => { });
                     }
