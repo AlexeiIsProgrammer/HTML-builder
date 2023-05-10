@@ -87,7 +87,7 @@ function copyAssets(pathStructor) {
             try {
                 for (const file of files) {
                     if (file.name.indexOf('.') === -1) {
-                        copyAssets(pathStructor + '\\\\' + file.name)
+                        copyAssets(pathStructor + '\\' + file.name)
                     } else {
                         copyFile(path.join(__dirname, pathStructor, file.name), path.join(__dirname, 'project-dist', pathStructor, file.name), () => { });
                     }
